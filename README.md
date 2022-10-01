@@ -35,7 +35,7 @@ Follow Discord instructions: https://support.discord.com/hc/en-us/articles/22838
 8. Press OK twice and enter password if prompted
 
 > Tip: To test the script in task manager, press "Run" from the right menu while having the scheduled task selected.
-> Tip: The script will begin working from midnight. To have the script start from now instead, edit the timer from step 3.c to start 2 minutes from your current local time
+> Tip: The script will begin working from midnight. To have the script start from now instead, edit the timer from step 3.3 to start 2 minutes from your current local time
 
 ###### queue-check.ps1 Arguments
 | Argument         | Description                                                                                                                           | Example                                               |
