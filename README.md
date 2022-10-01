@@ -26,7 +26,7 @@ Follow Discord instructions: https://support.discord.com/hc/en-us/articles/22838
     4. Action: Select "Start a program"
     5. Action Start a Program: Enter "powershell" into Program/script.
     6. Action Start a Program: Copy this into arguments and replace the bold parts with your own information. See ***queue-check.ps1 Arguments*** for more info on arguments.
-      "-ExecutionPolicy Bypass -File **C:\Users\MatsJ\Desktop\wow\queue-check.ps1** -DiscordUserName **Gullbart** -DiscordUserId **345935396712087552** -WebHook **https://discord.com/api/webhooks/12323/sahdk**"
+      `-ExecutionPolicy Bypass -File C:\Users\MatsJ\Desktop\wow\queue-check.ps1 -DiscordUserName Gullbart -DiscordUserId 345935396712087552 -WebHook https://discord.com/api/webhooks/12323/sahdk`
     7. Finish: Click Next and Finish
 4. Right click the task you just created and press "properties"
 5. Select "Run whether user is logged on or not"
