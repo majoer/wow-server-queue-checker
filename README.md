@@ -17,17 +17,17 @@ Follow Discord instructions: https://support.discord.com/hc/en-us/articles/22838
 #### Then, Run queue-check.ps1 periodically with Task Scheduler in Windows
 1. Download the [queue-check.ps1](https://github.com/majoer/wow-server-queue-checker/archive/refs/heads/main.zip) file and place it somewhere on your computer where it wont be deleted.
 2. Open the Windows Task Scheduler
-  a. Press Windows key + R
-  b. type taskschd.msc and press OK
+    1. Press Windows key + R
+    2. type taskschd.msc and press OK
 3. Click "Create Basic Task" in the menu on the right
-  a. Create a Basic Task: Give it a name, for example: Cron_Wow
-  b. Trigger: Select Daily trigger
-  c. Trigger Daily: Set start time to 00:00:00 and press Next
-  d. Action: Select "Start a program"
-  e. Action Start a Program: Enter "powershell" into Program/script.
-  f. Action Start a Program: Copy this into arguments and replace the bold parts with your own information. See ***queue-check.ps1 Arguments*** for more info on arguments.
-    `-ExecutionPolicy Bypass -File ***C:\Users\MatsJ\Desktop\wow\queue-check.ps1*** -DiscordUserName ***Gullbart*** -DiscordUserId ***345935396712087552*** -WebHook ***https://discord.com/api/webhooks/12323/sahdk***`
-  g. Finish: Click Next and Finish
+    1. Create a Basic Task: Give it a name, for example: Cron_Wow
+    2. Trigger: Select Daily trigger
+    3. Trigger Daily: Set start time to 00:00:00 and press Next
+    4. Action: Select "Start a program"
+    5. Action Start a Program: Enter "powershell" into Program/script.
+    6. Action Start a Program: Copy this into arguments and replace the bold parts with your own information. See ***queue-check.ps1 Arguments*** for more info on arguments.
+      `-ExecutionPolicy Bypass -File ***C:\Users\MatsJ\Desktop\wow\queue-check.ps1*** -DiscordUserName ***Gullbart*** -DiscordUserId ***345935396712087552*** -WebHook ***https://discord.com/api/webhooks/12323/sahdk***`
+    7. Finish: Click Next and Finish
 4. Right click the task you just created and press "properties"
 5. Select "Run whether user is logged on or not"
 6. Select "Triggers" tab and press "Edit"
