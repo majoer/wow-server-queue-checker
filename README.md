@@ -15,7 +15,7 @@ This Powershell script can log to Discord when:
 Follow Discord instructions: https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
 
 #### Then, Run queue-check.ps1 periodically with Task Scheduler in Windows
-1. Download the [queue-check.ps1]() file and place it somewhere on your computer where it wont be deleted.
+1. Download the [queue-check.ps1](https://github.com/majoer/wow-server-queue-checker/archive/refs/heads/main.zip) file and place it somewhere on your computer where it wont be deleted.
 2. Open the Windows Task Scheduler
   1. Press Windows key + R
   2. type taskschd.msc and press OK
