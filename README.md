@@ -11,7 +11,7 @@ This Powershell script can log to Discord when:
 
 ## How do I install it?
 
-#### First, create up a Discord Webhook
+#### First, create a Discord Webhook
 Follow Discord instructions: https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
 
 #### Then, Run queue-check.ps1 periodically with Task Scheduler in Windows
