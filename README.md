@@ -9,6 +9,8 @@ This Powershell script can log to Discord when:
 - Is user in-game?
 - Is user logged out?
 
+<img src="https://user-images.githubusercontent.com/5707874/193649769-03d6dbc1-a39c-4f16-a05c-a49883f957b7.png" alt="drawing" style="width:400px;"/>
+
 ## How do I install it?
 
 #### First, create a Discord Webhook
