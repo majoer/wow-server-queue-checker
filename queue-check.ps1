@@ -8,7 +8,6 @@ param (
   $WebHook
 )
 
-
 function Invoke-Script() {
   $WowProcessIds = (Get-Process -name "WowClassic").id
   
@@ -25,31 +24,26 @@ function Invoke-Script() {
 
 	$WowSockets = Get-NetTcpConnection -OwningProcess $WowProcessId
 
-	if ($debug) { Out-Host -InputObject $WowSockets }
-  
-	if (Test-TcpConnectionIsEstablished $WowSockets $QueuePort) {
-		Write-Host "Found connection to queue port $QueuePort. Assuming user is in queue"
-		Send-Discord("$DiscordUserName is in queue (ID: $WowProcessId)")
-    
-		return
+	if ($Debug) { Out-Host -InputObject $WowSockets }
+	
+	if ((Test-TcpConnectionIsEstablished $WowSockets $LobbyPort)) {
+	
+		if (Test-TcpConnectionIsEstablished $WowSockets $QueuePort) {
+			Write-Host "Found connection to queue port $QueuePort. Assuming user is in queue"
+			Send-Discord("$DiscordUserName is in queue (ID: $WowProcessId)")
+			
+		} elseif (Test-TcpConnectionIsEstablished $WowSockets $InGamePort) {
+			Write-Host "Found connection to server port $InGamePort. Assuming user is playing on a server"
+			Send-Discord("$DiscordUserName is playing (ID: $WowProcessId)")
+			
+		} else {
+			Write-Host "Found connection to lobby port $LobbyPort. Assuming user is in lobby"
+			Send-Discord("Warning: <@$DiscordUserId> is in lobby! (ID: $WowProcessId)")
+		}	
+	} else {
+		Write-Host "No checks passed. User is probably disconnected!"
+		Send-Discord("Warning: <@$DiscordUserId> is Disconnected! (ID: $WowProcessId)")
 	}
-  
-	if (Test-TcpConnectionIsEstablished $WowSockets $InGamePort) {
-		Write-Host "Found connection to server port $InGamePort. Assuming user is playing on a server"
-		Send-Discord("$DiscordUserName is playing (ID: $WowProcessId)")
-   
-		return
-	}
-
-	if (Test-TcpConnectionIsEstablished $WowSockets $LobbyPort) {
-		Write-Host "Found connection to lobby port $LobbyPort. Assuming user is in lobby"
-		Send-Discord("Warning: <@$DiscordUserId> is in lobby! (ID: $WowProcessId)")
-		
-		return
-	}
-  
-	Write-Host "No checks passed. User is probably disconnected!"
-	Send-Discord("Warning: <@$DiscordUserId> is Disconnected! (ID: $WowProcessId)")
   }
 }
 
