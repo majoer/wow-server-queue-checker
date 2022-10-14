@@ -12,6 +12,11 @@ param (
 function Invoke-Script() {
   $WowProcessIds = (Get-Process -name "WowClassic").id
   
+  if ($null -eq $WowProcessIds) {
+  	Write-Host "Wow classic not found. Is it running?"
+	return
+  }
+  
   Write-Host "Found wow processes: $WowProcessIds"
   
   Foreach($WowProcessId in $WowProcessIds){
