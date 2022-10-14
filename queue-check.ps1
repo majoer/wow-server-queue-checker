@@ -13,38 +13,39 @@ function Invoke-Script() {
   
   if ($null -eq $WowProcessIds) {
   	Write-Host "Wow classic not found. Is it running?"
-	return
+		return
   }
   
   Write-Host "Found wow processes: $WowProcessIds"
   
-  Foreach($WowProcessId in $WowProcessIds){
-	
-	Write-Host "Checking: $WowProcessId"
+  Foreach ($WowProcessId in $WowProcessIds) {
+		
+		Write-Host "Checking: $WowProcessId"
 
-	$WowSockets = Get-NetTcpConnection -OwningProcess $WowProcessId
+		$WowSockets = Get-NetTcpConnection -OwningProcess $WowProcessId
 
-	if ($Debug) { Out-Host -InputObject $WowSockets }
+		if ($Debug) { Out-Host -InputObject $WowSockets }
 	
-	if ((Test-TcpConnectionIsEstablished $WowSockets $LobbyPort)) {
+		if ((Test-TcpConnectionIsEstablished $WowSockets $LobbyPort)) {
 	
-		if (Test-TcpConnectionIsEstablished $WowSockets $QueuePort) {
-			Write-Host "Found connection to queue port $QueuePort. Assuming user is in queue"
-			Send-Discord("$DiscordUserName is in queue (ID: $WowProcessId)")
-			
-		} elseif (Test-TcpConnectionIsEstablished $WowSockets $InGamePort) {
-			Write-Host "Found connection to server port $InGamePort. Assuming user is playing on a server"
-			Send-Discord("$DiscordUserName is playing (ID: $WowProcessId)")
-			
+			if (Test-TcpConnectionIsEstablished $WowSockets $QueuePort) {
+				Write-Host "Found connection to queue port $QueuePort. Assuming user is in queue"
+				Send-Discord("$DiscordUserName is in queue (ID: $WowProcessId)")
+				
+			} elseif (Test-TcpConnectionIsEstablished $WowSockets $InGamePort) {
+					Write-Host "Found connection to server port $InGamePort. Assuming user is playing on a server"
+					Send-Discord("$DiscordUserName is playing (ID: $WowProcessId)")
+					
+				} else {
+						Write-Host "Found connection to lobby port $LobbyPort. Assuming user is in lobby"
+						Send-Discord("Warning: <@$DiscordUserId> is in lobby! (ID: $WowProcessId)")
+						
+					}	
 		} else {
-			Write-Host "Found connection to lobby port $LobbyPort. Assuming user is in lobby"
-			Send-Discord("Warning: <@$DiscordUserId> is in lobby! (ID: $WowProcessId)")
-		}	
-	} else {
-		Write-Host "No checks passed. User is probably disconnected!"
-		Send-Discord("Warning: <@$DiscordUserId> is Disconnected! (ID: $WowProcessId)")
+				Write-Host "No checks passed. User is probably disconnected!"
+				Send-Discord("Warning: <@$DiscordUserId> is Disconnected! (ID: $WowProcessId)")
+			}		
 	}
-  }
 }
 
 function Test-TcpConnectionIsEstablished($WowSockets, $Port) {
