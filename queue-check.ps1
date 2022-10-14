@@ -21,11 +21,6 @@ function Invoke-Script() {
   
   Foreach($WowProcessId in $WowProcessIds){
 	
-	if ($null -eq $WowProcessId) {
-		Write-Host "Wow classic not found. Is it running?"
-		return
-	}
-	
 	Write-Host "Checking: $WowProcessId"
 
 	$WowSockets = Get-NetTcpConnection -OwningProcess $WowProcessId
