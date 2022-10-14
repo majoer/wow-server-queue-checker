@@ -12,7 +12,7 @@ param (
 function Invoke-Script() {
   $WowProcessIds = (Get-Process -name "WowClassic").id
   
-	Write-Host "Found wow processes: $WowProcessIds"
+  Write-Host "Found wow processes: $WowProcessIds"
   
   Foreach($WowProcessId in $WowProcessIds){
 	
