@@ -26,7 +26,7 @@ function Invoke-Script() {
 
 		if ($Debug) { Out-Host -InputObject $WowSockets }
 	
-		if ((Test-TcpConnectionIsEstablished $WowSockets $LobbyPort)) {
+		if (Test-TcpConnectionIsEstablished $WowSockets $LobbyPort) {
 	
 			if (Test-TcpConnectionIsEstablished $WowSockets $QueuePort) {
 				Write-Host "Found connection to queue port $QueuePort. Assuming user is in queue"
