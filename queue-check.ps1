@@ -34,7 +34,7 @@ function Invoke-Script() {
   
 	if (Test-TcpConnectionIsEstablished $WowSockets $QueuePort) {
 		Write-Host "Found connection to queue port $QueuePort. Assuming user is in queue"
-		Send-Discord("$DiscordUserName is in queue(ID: $WowProcessId)")
+		Send-Discord("$DiscordUserName is in queue (ID: $WowProcessId)")
     
 		return
 	}
