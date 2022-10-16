@@ -12,23 +12,23 @@ function Invoke-Script() {
   $WowProcessIds = (Get-Process -name "WowClassic").id
   
   if ($null -eq $WowProcessIds) {
-  	Write-Host "Wow classic not found. Is it running?"
-		return
+    Write-Host "Wow classic not found. Is it running?"
+    return
   }
   
   Write-Host "Found wow processes: $WowProcessIds"
   
   Foreach ($WowProcessId in $WowProcessIds) {
 		
-		Write-Host "Checking: $WowProcessId"
+    Write-Host "Checking: $WowProcessId"
 
-		$WowSockets = Get-NetTcpConnection -OwningProcess $WowProcessId
+    $WowSockets = Get-NetTcpConnection -OwningProcess $WowProcessId
 
-		if ($Debug) { Out-Host -InputObject $WowSockets }
+    if ($Debug) { Out-Host -InputObject $WowSockets }
 		
-		Determine-Message($WowSockets)
+    Determine-Message($WowSockets)
 	
-	}
+  }
 }
 
 function Determine-Message($WowSockets) {
@@ -54,7 +54,7 @@ function Determine-Message($WowSockets) {
   }
   
   Write-Host "No checks passed. User is probably disconnected!"
-	Send-Discord("Warning: <@$DiscordUserId> is Disconnected! (ID: $WowProcessId)")
+  Send-Discord("Warning: <@$DiscordUserId> is Disconnected! (ID: $WowProcessId)")
 }
 
 function Test-TcpConnectionIsEstablished($WowSockets, $Port) {
